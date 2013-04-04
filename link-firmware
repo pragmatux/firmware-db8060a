@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+in=/lib/firmware/onboard/image
+out=/lib/firmware
+
+test -d $in || exit 1
+
+# Link firmware in $in/ to $out/ if no file is in the way.
+for fw in $in/*
+do
+	test -e ${out}${fw#$in} || ln -sf $fw $out
+done
+
+# Remove dead links to locations in $in/.
+for fw in $out/*
+do
+	test -e $fw && continue
+
+	case $(readlink $fw) in
+		$in/*) rm $fw ;;
+	esac
+done

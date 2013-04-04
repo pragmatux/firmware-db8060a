@@ -1,0 +1,11 @@
+[Unit]
+Description=Onboard firmware filesystem
+Before=local-fs.target
+
+[Mount]
+What=/dev/mmcblk0p1
+Where=/lib/firmware/onboard
+Options=ro
+
+[Install]
+WantedBy=local-fs.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Link onboard firmware into /etc/firmware
+Before=udev.service
+After=lib-firmware-onboard.mount
+Requires=lib-firmware-onboard.mount
+DefaultDependencies=false
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/lib/firmware-db8060a/link-firmware
+
+[Install]
+WantedBy=udev.service

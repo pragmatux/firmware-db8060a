@@ -1,0 +1,2 @@
+lib-firmware-onboard.* /lib/systemd/system
+link-firmware /usr/lib/firmware-db8060a
